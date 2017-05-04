@@ -18,18 +18,32 @@ export class TimelineComponent implements OnInit {
     private error: string = "";
     private feeds: Feed[] = [];
     private timeline: Article[] = [];
+    private nextTimeline: Article[] = null;
 
     constructor(private feedService: FeedService) {}
 
     ngOnInit() {
-        this.fetchFeeds();
+        if(localStorage.getItem('storedTimeline')) {
+            this.timeline = JSON.parse(localStorage.getItem('storedTimeline'));
+            this.fetchFeeds((articles: Article[]) => { this.nextTimeline = articles });
+        }
+        else {
+            this.fetchFeeds((articles: Article[]) => { this.timeline = articles });
+        }
         setInterval(() => {
             console.log("Refreshing");
-            this.fetchFeeds();
+            this.fetchFeeds((articles: Article[]) => { this.nextTimeline = articles });
         }, 5 * 60 * 1000);
     }
 
-    fetchFeeds() {
+    refreshTimeline() {
+        this.timeline = this.nextTimeline;
+        localStorage.setItem('storedTimeline', JSON.stringify(this.timeline));
+        this.nextTimeline = null;
+        console.log("REFRESHING TIMELINE");
+    }
+
+    fetchFeeds(callback: any) {
         this.feedService.loadFeeds().subscribe(
             (feeds) => {
                 console.log(feeds);
@@ -45,7 +59,7 @@ export class TimelineComponent implements OnInit {
                             else if(a.pubdate > b.pubdate) { return -1; }
                             else { return 0; }
                         });
-                        this.timeline = allArticles;
+                        callback(allArticles);
                         console.log(this.timeline);
                     },
                     (error) => {
@@ -71,12 +85,25 @@ export class TimelineComponent implements OnInit {
                     this.error = "Failed to add feed"
                     this.message = "";
                 }
-                this.fetchFeeds();
+                this.fetchFeeds((articles: Article[]) => {this.nextTimeline = articles});
             },
             (error) => {
                 this.error = error;
                 this.message = "";
             }
         )
+    }
+
+    differentTimelines() {
+        if(this.timeline.length != this.nextTimeline.length) {
+            return true;
+        }
+
+        for(var i = 0; i < this.timeline.length; i++) {
+            if(this.timeline[i].url != this.nextTimeline[i].url) {
+                return true;
+            }
+        }
+        return false;
     }
 }
