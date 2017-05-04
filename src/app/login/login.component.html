@@ -1,0 +1,8 @@
+<form (ngSubmit)="login()">
+  <label for="email">Email </label><input [(ngModel)]="model.email" name="email" type="text" id="email"/>
+  <br>
+  <label for="password">Password </label><input [(ngModel)]="model.password" name="password" type="password" id="password"/>
+  <br>
+  <button>Login</button>
+  <span style="color: red">{{ error }}</span>
+</form>
