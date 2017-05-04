@@ -24,7 +24,7 @@ export class TimelineComponent implements OnInit {
 
     ngOnInit() {
         if(localStorage.getItem('storedTimeline')) {
-            this.timeline = JSON.parse(localStorage.getItem('storedTimeline'));
+            this.timeline = this.parseTimeline(localStorage.getItem('storedTimeline'));
             this.fetchFeeds((articles: Article[]) => { this.nextTimeline = articles });
         }
         else {
@@ -34,6 +34,15 @@ export class TimelineComponent implements OnInit {
             console.log("Refreshing");
             this.fetchFeeds((articles: Article[]) => { this.nextTimeline = articles });
         }, 5 * 60 * 1000);
+    }
+
+    parseTimeline(stringifiedTimeline: string): Article[] {
+        // TODO: way too hacky
+        let timeline: Article[] = JSON.parse(stringifiedTimeline);
+        for(var i = 0; i < timeline.length; i++) {
+            timeline[i].pubdate = new Date(timeline[i].pubdate);
+        }
+        return timeline;
     }
 
     refreshTimeline() {
