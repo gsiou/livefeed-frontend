@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FeedService } from '../services/feed.service';
+import { AlertService } from '../services/alert.service';
 
 import { Feed } from '../models/feed';
 import { Article } from '../models/article';
@@ -11,8 +12,10 @@ import { Article } from '../models/article';
 
 export class TimelineComponent implements OnInit {
 
-    private showAddForm: boolean = false;
+    private showAddFeedForm: boolean = false;
+    private showAddAlertForm: boolean = false;
     private url: string = "";
+    private alert: string = "";
 
     private message: string = "";
     private error: string = "";
@@ -20,7 +23,7 @@ export class TimelineComponent implements OnInit {
     private timeline: Article[] = [];
     private nextTimeline: Article[] = null;
 
-    constructor(private feedService: FeedService) {}
+    constructor(private feedService: FeedService, private alertService: AlertService) {}
 
     ngOnInit() {
         if(localStorage.getItem('storedTimeline')) {
@@ -100,6 +103,27 @@ export class TimelineComponent implements OnInit {
                 this.error = error;
                 this.message = "";
             }
+        )
+    }
+
+    addAlert() {
+        console.log(this.alert);
+        this.alertService.addAlert(this.alert).subscribe(
+            (success) => {
+                if(success === true){
+                    this.error = "";
+                    this.message = "Alert added!";
+                }
+                else {
+                    this.error = "Failed to add alert";
+                    this.message = "";
+                }
+            },
+            (error) => {
+                this.error = error;
+                this.message = "";
+            }
+
         )
     }
 

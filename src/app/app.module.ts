@@ -12,6 +12,7 @@ import { TimelineComponent }       from './timeline/timeline.component';
 import { AuthGuard }               from './guards/auth.guard';
 import { AuthenticationService }   from './services/authentication.service';
 import { FeedService }             from './services/feed.service';
+import { AlertService }            from './services/alert.service';
 import { APP_CONFIG, AppConfig }   from './app.config';
 
 import { routing }                 from './app.routing';
@@ -24,7 +25,8 @@ import { routing }                 from './app.routing';
                     AuthGuard,
                     AuthenticationService,
                     { provide: APP_CONFIG, useValue: AppConfig },
-                    FeedService
+                    FeedService,
+                    AlertService
                 ]
 })
 export class AppModule { }

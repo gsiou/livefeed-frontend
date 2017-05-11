@@ -1,11 +1,17 @@
-<form [hidden]="!showAddForm" (ngSubmit)="addFeed()">
+<form [hidden]="!showAddFeedForm" (ngSubmit)="addFeed()">
     <label for="url">URL:</label><input [(ngModel)]="url" type="text" id="url" name="url" required>
     <input type="submit" value="Save">
     <span style="color: red"> {{ error }}</span>
     <span style="color: green"> {{ message }}</span>
 </form>
-<button class="btn" (click)="showAddForm=true">New Feed</button>
-
+<form [hidden]="!showAddAlertForm" (ngSubmit)="addAlert()">
+    <label for="url">URL:</label><input [(ngModel)]="alert" type="text" id="alert" name="alert" required>
+    <input type="submit" value="Save">
+    <span style="color: red"> {{ error }}</span>
+    <span style="color: green"> {{ message }}</span>
+</form>
+<button class="btn" (click)="showAddFeedForm=true">New Feed</button>
+<button class="btn" (click)="showAddAlertForm=true">New alert</button>
 <h3>User feeds:</h3>
 <button (click)="refreshTimeline()" *ngIf="nextTimeline && differentTimelines()">Refresh Timeline</button>
 <ul>
