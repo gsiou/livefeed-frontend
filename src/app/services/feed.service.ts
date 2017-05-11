@@ -36,12 +36,14 @@ export class FeedService {
         params.set("token", token);
         let observs: Observable<any>[] = [];
         for(var i = 0; i < feeds.length; i++) {
+            let feedIndex: number = i;
             params.set("url", feeds[i].url);
             observs.push(this.http.get(this.config.apiEndpoint + '/api/articles', { search: params }).map((response: Response) => {
                 let res = response.json();
                 let articles: Article[] = new Array();
                 for(var i = 0; i < res.articles.length; i++) {
                     let currArticle = new Article(res.articles[i]);
+                    currArticle.setFeedName(feeds[feedIndex].url);
                     articles.push(currArticle);
                 }
                 return articles;

@@ -18,6 +18,7 @@
     <li *ngFor="let article of timeline; let j = index">
         <strong>
             <a target="_blank" href="{{ article.url }}">{{ article.title }}</a>
+            ({{ article.feedName }})
         </strong>: {{ article.summary }}
         {{ article.pubdate }}
     </li>
