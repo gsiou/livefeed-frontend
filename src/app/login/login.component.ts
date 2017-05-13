@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
             (success) => {
                 if (success) {
                     console.log("Logged in");
-                    localStorage.setItem('storedTimeline', null);
+                    localStorage.removeItem("storedTimeline");
                     this.router.navigate(['/']);
                 }
                 else {
