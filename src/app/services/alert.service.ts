@@ -1,7 +1,9 @@
-import { Http, Response } from '@angular/http';
+import { Http, Response, URLSearchParams } from '@angular/http';
 import { Injectable, Inject }      from '@angular/core';
 import { Observable }              from 'rxjs/Rx';
 import { APP_CONFIG, IAppConfig }  from '../app.config';
+
+import { Alert }                   from '../models/alert';
 
 @Injectable()
 export class AlertService{
@@ -18,6 +20,23 @@ export class AlertService{
             else {
                 return false;
             }
+        });
+    }
+
+    fetchAlerts(): Observable<Alert[]> {
+        let token = JSON.parse(localStorage.getItem('authUser')).token;
+        let params: URLSearchParams = new URLSearchParams();
+        params.set("token", token);
+        return this.http.get(this.config.apiEndpoint + '/api/alerts/', { search: params })
+        .map((response: Response) => {
+            let res = response.json();
+            let alerts: Alert[] = [];
+            for(var i = 0; i < res.alerts.length ; i++) {
+                alerts.push(new Alert());
+                alerts[i].alertWord = res.alerts[i];
+            }
+
+            return alerts;
         });
     }
 }
