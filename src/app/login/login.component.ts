@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
             (success) => {
                 if (success) {
                     console.log("Logged in");
+                    localStorage.setItem('storedTimeline', null);
                     this.router.navigate(['/']);
                 }
                 else {
