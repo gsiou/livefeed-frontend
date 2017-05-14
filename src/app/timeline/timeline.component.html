@@ -16,11 +16,7 @@
 <button (click)="refreshTimeline()" *ngIf="nextTimeline && differentTimelines()">Refresh Timeline</button>
 <ul>
     <li *ngFor="let article of timeline; let j = index">
-        <strong>
-            <a target="_blank" href="{{ article.url }}">{{ article.title }}</a>
-            ({{ article.feedName }})
-        </strong>: {{ article.summary }}
-        {{ article.pubdate }}
+        <articleview [article]="article"></articleview>
     </li>
 
 </ul>

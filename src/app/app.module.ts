@@ -3,8 +3,8 @@ import { BrowserModule }           from '@angular/platform-browser';
 import { FormsModule }             from '@angular/forms';
 import { HttpModule }              from '@angular/http';
 
-
 import { AppComponent }            from './app.component';
+import { ArticleComponent }        from './timeline/article.component';
 import { LoginComponent }          from './login/login.component';
 import { RegisterComponent }       from './register/register.component';
 import { TimelineComponent }       from './timeline/timeline.component';
@@ -19,7 +19,7 @@ import { routing }                 from './app.routing';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpModule, routing ],
-  declarations: [ AppComponent, LoginComponent, TimelineComponent, RegisterComponent ],
+  declarations: [ AppComponent, LoginComponent, TimelineComponent, RegisterComponent, ArticleComponent ],
   bootstrap:    [ AppComponent ],
   providers:    [
                     AuthGuard,
