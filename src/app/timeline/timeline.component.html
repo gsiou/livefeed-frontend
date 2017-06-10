@@ -13,6 +13,7 @@
 <button class="btn" (click)="showAddFeedForm=true">New Feed</button>
 <button class="btn" (click)="showAddAlertForm=true">New alert</button>
 <h3>User feeds:</h3>
+<p [hidden]="!loading">Loading...</p>
 <button (click)="refreshTimeline()" *ngIf="nextTimeline && differentTimelines()">Refresh Timeline</button>
 <ul>
     <li *ngFor="let article of timeline; let j = index">

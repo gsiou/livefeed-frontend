@@ -5,6 +5,9 @@ import { AlertService } from '../services/alert.service';
 
 import { Feed } from '../models/feed';
 import { Article } from '../models/article';
+import { Alert } from '../models/alert';
+
+import { ArticleComponent } from './article.component';
 
 @Component({
     templateUrl: './timeline.component.html',
@@ -22,21 +25,31 @@ export class TimelineComponent implements OnInit {
     private feeds: Feed[] = [];
     private timeline: Article[] = [];
     private nextTimeline: Article[] = null;
-
+    private alerts: Alert[] = [];
+    private loading: boolean = false;
     constructor(private feedService: FeedService, private alertService: AlertService) {}
 
     ngOnInit() {
         if(localStorage.getItem('storedTimeline')) {
             this.timeline = this.parseTimeline(localStorage.getItem('storedTimeline'));
-            this.fetchFeeds((articles: Article[]) => { this.nextTimeline = articles });
+            this.loading = true;
+            this.fetchFeeds((articles: Article[]) => {
+                this.nextTimeline = articles;
+                this.loading = false;
+            });
         }
         else {
-            this.fetchFeeds((articles: Article[]) => { this.timeline = articles });
+            this.fetchFeeds((articles: Article[]) => {
+                this.timeline = articles;
+                localStorage.setItem('storedTimeline', JSON.stringify(articles));
+            });
         }
         setInterval(() => {
             console.log("Refreshing");
             this.fetchFeeds((articles: Article[]) => { this.nextTimeline = articles });
         }, 5 * 60 * 1000);
+
+        this.fetchAlerts();
     }
 
     parseTimeline(stringifiedTimeline: string): Article[] {
@@ -53,6 +66,17 @@ export class TimelineComponent implements OnInit {
         localStorage.setItem('storedTimeline', JSON.stringify(this.timeline));
         this.nextTimeline = null;
         console.log("REFRESHING TIMELINE");
+    }
+
+    fetchAlerts() {
+        this.alertService.fetchAlerts().subscribe(
+            (alerts) => {
+                console.log(alerts);
+            },
+            (error) => {
+                console.log(error);
+            }
+        )
     }
 
     fetchFeeds(callback: any) {
