@@ -8,6 +8,7 @@ import { Article } from '../models/article';
 import { Alert } from '../models/alert';
 
 import { ArticleComponent } from './article.component';
+import { MenuComponent } from './../menu/menu.component';
 
 @Component({
     templateUrl: './timeline.component.html',
@@ -162,5 +163,9 @@ export class TimelineComponent implements OnInit {
             }
         }
         return false;
+    }
+
+    onShowNewFeedForm(show: boolean) {
+        this.showAddFeedForm = show;
     }
 }
