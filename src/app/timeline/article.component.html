@@ -1,7 +1,12 @@
 <strong>
-    <a target="_blank" href="{{ article.url }}">{{ article.title }}</a>
+    <a target="_blank" class="article-title" href="{{ article.url }}">{{ article.title }}</a>
     ({{ article.feedName }})
-</strong>: {{ showFull ? article.summary : smallSummary }}
-<a (click)="toggleFull()" href="#">{{ showFull ? "Show Less" : "Read More..." }}</a>
-<a target="_blank" href="{{ article.url }}">[Full article]</a>
-{{ article.pubdate }}
+</strong>
+<br>
+<p>
+    {{ showFull ? article.summary : smallSummary }}
+    <a (click)="toggleFull()" href="#">{{ showFull ? "Show Less" : "Read More..." }}</a>
+    <a target="_blank" href="{{ article.url }}">[Full article]</a>
+    {{ article.pubdate }}
+</p>
+<hr/>

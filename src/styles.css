@@ -9,9 +9,17 @@ h1 {
 }
 
 .menu-bar {
-    font-size: xx-large;
+    font-size: x-large;
     padding-top: 1%;
     padding-bottom: 1%;
     border-bottom: 1px solid black;
 
+}
+
+.appname {
+    font-size: xx-large;
+}
+
+.article-title {
+    font-size: large;
 }

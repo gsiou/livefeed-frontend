@@ -15,8 +15,8 @@
 <p [hidden]="!loading">Loading...</p>
 <button (click)="refreshTimeline()" *ngIf="nextTimeline && differentTimelines()">Refresh Timeline</button>
 <ul>
-    <li *ngFor="let article of timeline; let j = index">
+    <div *ngFor="let article of timeline; let j = index">
         <articleview [article]="article"></articleview>
-    </li>
+    </div>
 
 </ul>
