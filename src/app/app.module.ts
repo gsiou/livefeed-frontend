@@ -9,6 +9,7 @@ import { LoginComponent }          from './login/login.component';
 import { RegisterComponent }       from './register/register.component';
 import { TimelineComponent }       from './timeline/timeline.component';
 import { MenuComponent }           from './menu/menu.component';
+import { HomeComponent }           from './home/home.component';
 
 import { AuthGuard }               from './guards/auth.guard';
 import { AuthenticationService }   from './services/authentication.service';
@@ -20,7 +21,7 @@ import { routing }                 from './app.routing';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpModule, routing ],
-  declarations: [ AppComponent, LoginComponent, TimelineComponent, RegisterComponent, ArticleComponent, MenuComponent ],
+  declarations: [ AppComponent, LoginComponent, TimelineComponent, RegisterComponent, ArticleComponent, MenuComponent, HomeComponent ],
   bootstrap:    [ AppComponent ],
   providers:    [
                     AuthGuard,

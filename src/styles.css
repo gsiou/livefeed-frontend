@@ -9,6 +9,8 @@ h1 {
 }
 
 .menu-bar {
+    margin: auto;
+    text-align: center;
     font-size: x-large;
     padding-top: 1%;
     padding-bottom: 1%;
@@ -17,9 +19,15 @@ h1 {
 }
 
 .appname {
-    font-size: xx-large;
+    font-size: 3em;
 }
 
 .article-title {
     font-size: large;
+}
+
+.user-info {
+    position: absolute;
+    right: 1%;
+    top: 0;
 }

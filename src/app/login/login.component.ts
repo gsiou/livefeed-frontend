@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
                 if (success) {
                     console.log("Logged in");
                     localStorage.removeItem("storedTimeline");
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/timeline']);
                 }
                 else {
                     this.error = "Invalid email/password";

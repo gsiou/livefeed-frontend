@@ -35,6 +35,7 @@ export class AuthenticationService {
     logout() {
         localStorage.removeItem('authUser');
         localStorage.removeItem('authDate');
+        localStorage.removeItem('storedTimeline'); // remove anything we had in store for privacy
     }
 
     register(email: string, password: string): Observable<boolean> {
@@ -45,5 +46,19 @@ export class AuthenticationService {
             console.log(response);
             return true;
         });
+    }
+
+    getUser() {
+        return JSON.parse(localStorage.getItem('authUser')).email;
+    }
+
+    userIsLogged() {
+        // TODO: fix this properly
+        if(localStorage.getItem('authUser') !== null) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
