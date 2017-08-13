@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+body {
+    font-family: 'Roboto Slab', serif;
+}
+
 h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
@@ -30,4 +36,16 @@ h1 {
     position: absolute;
     right: 1%;
     top: 0;
+}
+
+.timeline {
+    margin: auto;
+    margin-top: 1%;
+    max-width: 60%;
+}
+
+.link-like, a {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
 }

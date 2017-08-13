@@ -11,12 +11,10 @@
     <span style="color: red"> {{ error }}</span>
     <span style="color: green"> {{ message }}</span>
 </form>
-<h3>User feeds:</h3>
 <p [hidden]="!loading">Loading...</p>
 <button (click)="refreshTimeline()" *ngIf="nextTimeline && differentTimelines()">Refresh Timeline</button>
-<ul>
+<div class="timeline">
     <div *ngFor="let article of timeline; let j = index">
         <articleview [article]="article"></articleview>
     </div>
-
-</ul>
+</div>
