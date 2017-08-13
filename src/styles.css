@@ -53,3 +53,8 @@ h1 {
 a:visited {
     color: #ab00b3;
 }
+
+.important-message {
+    font-size: xx-large;
+    text-align: center;
+}

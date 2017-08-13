@@ -12,8 +12,8 @@
     <span style="color: green"> {{ message }}</span>
 </form>
 <p [hidden]="!loading">Loading...</p>
-<button (click)="refreshTimeline()" *ngIf="nextTimeline && differentTimelines()">Refresh Timeline</button>
 <div class="timeline">
+    <span class="important-message" *ngIf="nextTimeline && differentTimelines()">You have <span class="link-like" (click)="refreshTimeline()">new articles!</span></span>
     <div *ngFor="let article of timeline; let j = index">
         <articleview [article]="article"></articleview>
     </div>
