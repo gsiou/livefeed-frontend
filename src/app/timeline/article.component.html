@@ -3,10 +3,11 @@
     ({{ article.feedName }})
 </strong>
 <br>
+{{ article.pubdate }}
+<br>
 <p>
     {{ showFull ? article.summary : smallSummary }}
     <span (click)="toggleFull()" class="link-like">{{ showFull ? "Show Less" : "Read More..." }}</span>
     <a target="_blank" href="{{ article.url }}">[Full article]</a>
-    {{ article.pubdate }}
 </p>
 <hr/>
