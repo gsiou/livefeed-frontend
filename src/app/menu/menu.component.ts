@@ -11,6 +11,7 @@ export class MenuComponent {
     @Output() onShowNewFeedForm = new EventEmitter<boolean>();
     private newFeedForm: boolean = false;
     private username: string;
+    private showSearch: boolean = false;
 
     constructor(private authenticationService: AuthenticationService, private router: Router) {
         this.username = authenticationService.getUser();
@@ -19,6 +20,10 @@ export class MenuComponent {
     showNewFeedForm() {
         this.newFeedForm = !this.newFeedForm;
         this.onShowNewFeedForm.emit(this.newFeedForm);
+    }
+
+    toggleSearchForm() {
+        this.showSearch = !this.showSearch;
     }
 
     logout() {

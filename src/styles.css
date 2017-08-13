@@ -50,11 +50,21 @@ h1 {
     cursor: pointer;
 }
 
+.link-like-menu {
+    color: blue;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 a:visited {
     color: #ab00b3;
 }
 
 .important-message {
-    font-size: xx-large;
+    font-size: large;
+    text-align: center;
+}
+
+.search-form {
     text-align: center;
 }

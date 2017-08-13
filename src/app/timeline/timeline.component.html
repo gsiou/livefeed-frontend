@@ -13,7 +13,7 @@
 </form>
 <p [hidden]="!loading">Loading...</p>
 <div class="timeline">
-    <span class="important-message" *ngIf="nextTimeline && differentTimelines()">You have <span class="link-like" (click)="refreshTimeline()">new articles!</span></span>
+    <p class="important-message" *ngIf="nextTimeline && differentTimelines()">You have <span class="link-like" (click)="refreshTimeline()">new articles!</span></p>
     <div *ngFor="let article of timeline; let j = index">
         <articleview [article]="article"></articleview>
     </div>
