@@ -10,7 +10,7 @@ import { RegisterComponent }       from './register/register.component';
 import { TimelineComponent }       from './timeline/timeline.component';
 import { MenuComponent }           from './menu/menu.component';
 import { HomeComponent }           from './home/home.component';
-
+import { HeaderComponent }         from './header/header.component';
 import { AuthGuard }               from './guards/auth.guard';
 import { AuthenticationService }   from './services/authentication.service';
 import { FeedService }             from './services/feed.service';
@@ -21,7 +21,7 @@ import { routing }                 from './app.routing';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpModule, routing ],
-  declarations: [ AppComponent, LoginComponent, TimelineComponent, RegisterComponent, ArticleComponent, MenuComponent, HomeComponent ],
+  declarations: [ AppComponent, LoginComponent, TimelineComponent, RegisterComponent, ArticleComponent, MenuComponent, HomeComponent, HeaderComponent ],
   bootstrap:    [ AppComponent ],
   providers:    [
                     AuthGuard,
