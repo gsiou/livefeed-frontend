@@ -1,4 +1,4 @@
-<mainmenu (onShowNewFeedForm)="onShowNewFeedForm($event)"></mainmenu>
+<mainmenu (onShowNewFeedForm)="onShowNewFeedForm($event)" (onSearch)="onSearch($event)"></mainmenu>
 <form [hidden]="!showAddFeedForm" (ngSubmit)="addFeed()">
     <label for="url">URL:</label><input [(ngModel)]="url" type="text" id="url" name="url" required>
     <input type="submit" value="Save">
@@ -15,6 +15,6 @@
 <div class="timeline">
     <p class="important-message" *ngIf="nextTimeline && differentTimelines()">You have <span class="link-like" (click)="refreshTimeline()">new articles!</span></p>
     <div *ngFor="let article of timeline; let j = index">
-        <articleview [article]="article"></articleview>
+        <articleview *ngIf="filter === '' || applyFilter(article)" [article]="article"></articleview>
     </div>
 </div>

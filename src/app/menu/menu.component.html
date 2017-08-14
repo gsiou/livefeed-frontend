@@ -6,7 +6,7 @@
     <span class="link-like-menu" (click)="showNewFeedForm()">Add Feed</span> /
     <span class="link-like-menu">Manage Feeds</span> /
     <span class="link-like-menu" (click)="toggleSearchForm()">Search</span>
-    <div *ngIf="showSearch" class="search-form">
-        <input type="text"/><button>Search</button>
-    </div>
+    <form *ngIf="showSearch" class="search-form" (ngSubmit)="search()">
+        <input [(ngModel)]="searchTerms" name="terms" type="text" placeholder="Search..."/><input type="submit" value="Search"/>
+    </form>
 </div>

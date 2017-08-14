@@ -20,7 +20,6 @@ export class TimelineComponent implements OnInit {
     private showAddAlertForm: boolean = false;
     private url: string = "";
     private alert: string = "";
-
     private message: string = "";
     private error: string = "";
     private feeds: Feed[] = [];
@@ -28,6 +27,8 @@ export class TimelineComponent implements OnInit {
     private nextTimeline: Article[] = null;
     private alerts: Alert[] = [];
     private loading: boolean = false;
+    private filter: string = "";
+
     constructor(private feedService: FeedService, private alertService: AlertService) {}
 
     ngOnInit() {
@@ -167,5 +168,20 @@ export class TimelineComponent implements OnInit {
 
     onShowNewFeedForm(show: boolean) {
         this.showAddFeedForm = show;
+    }
+
+    onSearch(terms: string) {
+        this.filter = terms;
+    }
+
+    applyFilter(article: Article): boolean {
+        // TODO: Should be replaced by serious search
+        if(article.title.indexOf(this.filter) !== -1) {
+            return true;
+        }
+        if(article.summary.indexOf(this.filter) !== -1) {
+            return true;
+        }
+        return false;
     }
 }
