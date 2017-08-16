@@ -13,6 +13,7 @@
 </form>
 <p [hidden]="!loading">Loading...</p>
 <div class="timeline">
+    <p class="result-message" *ngIf="filter!==''">Results for "{{ filter }}" <i (click)="clearSearch()" class="fa fa-times-circle close-btn" aria-hidden="true"></i></p>
     <p class="important-message" *ngIf="nextTimeline && differentTimelines()">You have <span class="link-like" (click)="refreshTimeline()">new articles!</span></p>
     <div *ngFor="let article of timeline; let j = index">
         <articleview *ngIf="filter === '' || applyFilter(article)" [article]="article"></articleview>

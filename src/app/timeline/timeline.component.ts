@@ -184,4 +184,8 @@ export class TimelineComponent implements OnInit {
         }
         return false;
     }
+
+    clearSearch() {
+        this.filter = "";
+    }
 }
