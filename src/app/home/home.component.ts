@@ -11,4 +11,12 @@ export class HomeComponent {
             this.router.navigate(['/timeline']);
         }
     }
+
+    register() {
+        this.router.navigate(['/register']);
+    }
+
+    login() {
+        this.router.navigate(['/login']);
+    }
 }
