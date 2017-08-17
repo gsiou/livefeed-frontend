@@ -10,6 +10,7 @@ import { AuthenticationService } from '../services/authentication.service';
 export class MenuComponent {
     @Output() onShowNewFeedForm = new EventEmitter<boolean>();
     @Output() onSearch = new EventEmitter<string>();
+    @Output() onManage = new EventEmitter();
     private newFeedForm: boolean = false;
     private username: string;
     private showSearch: boolean = false;
@@ -26,6 +27,10 @@ export class MenuComponent {
 
     toggleSearchForm() {
         this.showSearch = !this.showSearch;
+    }
+
+    toggleManage() {
+        this.onManage.emit();
     }
 
     logout() {

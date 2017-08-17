@@ -112,6 +112,17 @@ a:visited {
     cursor: pointer;
 }
 
+.form-button-fluid {
+    background-color: rgba(20, 20, 20, 0.7);
+    color: white;
+    padding: 15px 25px 15px 25px;
+    font-size: large;
+    margin-top: 2%;
+    border: 0;
+    cursor: pointer;
+}
+
+
 .user-page {
     position: absolute;
     top: 0;

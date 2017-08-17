@@ -18,6 +18,7 @@ export class TimelineComponent implements OnInit {
 
     private showAddFeedForm: boolean = false;
     private showAddAlertForm: boolean = false;
+    private showManage: boolean = false;
     private url: string = "";
     private alert: string = "";
     private message: string = "";
@@ -176,6 +177,10 @@ export class TimelineComponent implements OnInit {
 
     onSearch(terms: string) {
         this.filter = terms;
+    }
+
+    onToggleManage() {
+        this.showManage = !this.showManage;
     }
 
     applyFilter(article: Article): boolean {

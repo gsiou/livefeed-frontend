@@ -1,4 +1,4 @@
-<mainmenu (onShowNewFeedForm)="onShowNewFeedForm($event)" (onSearch)="onSearch($event)"></mainmenu>
+<mainmenu (onShowNewFeedForm)="onShowNewFeedForm($event)" (onSearch)="onSearch($event)" (onManage)="onToggleManage($event)"></mainmenu>
 <div [hidden]="!showAddFeedForm" class="modal user-form">
     <form (ngSubmit)="addFeed()">
         <h2>Add new rss source</h2>
@@ -10,6 +10,14 @@
             <span style="color: green"> {{ message }}</span>
         </div>
     </form>
+</div>
+<div [hidden]="!showManage" class ="modal user-form">
+    <h2>Your feeds</h2>
+    <div *ngFor="let feed of feeds; let i = index">
+        <strong>{{ feed.name }}</strong> ({{ feed.url }})
+        {{ feed.description }} <button class="form-button-fluid">Remove Feed</button>
+        <hr>
+    </div>
 </div>
 <p [hidden]="!loading">Loading...</p>
 <div class="timeline">
