@@ -170,6 +170,10 @@ export class TimelineComponent implements OnInit {
         this.showAddFeedForm = show;
     }
 
+    hideNewFeedForm() {
+        this.showAddFeedForm = false;
+    }
+
     onSearch(terms: string) {
         this.filter = terms;
     }

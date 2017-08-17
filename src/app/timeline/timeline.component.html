@@ -1,16 +1,16 @@
 <mainmenu (onShowNewFeedForm)="onShowNewFeedForm($event)" (onSearch)="onSearch($event)"></mainmenu>
-<form [hidden]="!showAddFeedForm" (ngSubmit)="addFeed()">
-    <label for="url">URL:</label><input [(ngModel)]="url" type="text" id="url" name="url" required>
-    <input type="submit" value="Save">
-    <span style="color: red"> {{ error }}</span>
-    <span style="color: green"> {{ message }}</span>
-</form>
-<form [hidden]="!showAddAlertForm" (ngSubmit)="addAlert()">
-    <label for="url">URL:</label><input [(ngModel)]="alert" type="text" id="alert" name="alert" required>
-    <input type="submit" value="Save">
-    <span style="color: red"> {{ error }}</span>
-    <span style="color: green"> {{ message }}</span>
-</form>
+<div [hidden]="!showAddFeedForm" class="modal user-form">
+    <form (ngSubmit)="addFeed()">
+        <h2>Add new rss source</h2>
+        <label for="url">URL:</label><input [(ngModel)]="url" type="text" id="url" name="url" required>
+        <input class="form-button" type="submit" value="Save">
+        <div class="align-center"><span (click)="hideNewFeedForm()" class="link-like">Close</span>
+            <br>
+            <span style="color: red"> {{ error }}</span>
+            <span style="color: green"> {{ message }}</span>
+        </div>
+    </form>
+</div>
 <p [hidden]="!loading">Loading...</p>
 <div class="timeline">
     <p class="result-message" *ngIf="filter!==''">Results for "{{ filter }}" <i (click)="clearSearch()" class="fa fa-times-circle close-btn" aria-hidden="true"></i></p>

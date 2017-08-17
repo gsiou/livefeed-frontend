@@ -220,3 +220,21 @@ a:visited {
 .close-btn {
     cursor: pointer;
 }
+
+.modal {
+    transition: opacity 0.3s;
+    position: absolute;
+    top: 15%;
+    z-index: 1000;
+    color: black;
+    width: 40%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.90);
+    box-shadow: 0 0 3px 1.5px grey;
+}
+
+.align-center {
+    text-align: center
+}
