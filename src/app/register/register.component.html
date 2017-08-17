@@ -3,6 +3,7 @@
         <form (ngSubmit)="register()">
             <h2>Create Account</h2>
             <span *ngIf="error" style="color: red">{{ error }}</span>
+            <span *ngIf="success" style="color: green">You have registered! Please <a href="/login">login</a> to continue.</span>
             <br>
             <label for="email">Email</label>
             <br>
