@@ -1,4 +1,4 @@
-import { Http, Headers, Response, URLSearchParams } from '@angular/http';
+import { Http, Headers, Response, URLSearchParams, RequestOptions } from '@angular/http';
 import { Injectable, Inject }      from '@angular/core';
 import { Observable }              from 'rxjs/Rx';
 import { APP_CONFIG, IAppConfig }  from '../app.config';
@@ -66,6 +66,27 @@ export class FeedService {
     addFeed(url: String): Observable<boolean> {
         let token = JSON.parse(localStorage.getItem('authUser')).token;
         return this.http.post(this.config.apiEndpoint + '/api/feed', { url: url, token: token})
+        .map((response: Response) => {
+            let res = response.json();
+            if (res.success === true) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+    }
+
+    removeFeed(url: String): Observable<boolean> {
+        let token = JSON.parse(localStorage.getItem('authUser')).token;
+        let headers = new Headers();
+        return this.http.delete(this.config.apiEndpoint + '/api/feed', new RequestOptions({
+            headers: headers,
+            body: {
+                url: url,
+                token: token
+            }
+        }))
         .map((response: Response) => {
             let res = response.json();
             if (res.success === true) {

@@ -11,11 +11,12 @@
         </div>
     </form>
 </div>
-<div [hidden]="!showManage" class ="modal user-form">
+<div [hidden]="!showManage" class="modal user-form align-center">
     <h2>Your feeds</h2>
     <div *ngFor="let feed of feeds; let i = index">
-        <strong>{{ feed.name }}</strong> ({{ feed.url }})
-        {{ feed.description }} <button class="form-button-fluid">Remove Feed</button>
+        <strong>{{ feed.name }}</strong> ({{ feed.url }})<br>
+        {{ feed.description }}<br>
+        <button class="form-button-small" (click)="removeFeed(feed)">Remove Feed</button>
         <hr>
     </div>
 </div>

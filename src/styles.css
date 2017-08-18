@@ -112,10 +112,10 @@ a:visited {
     cursor: pointer;
 }
 
-.form-button-fluid {
+.form-button-small {
     background-color: rgba(20, 20, 20, 0.7);
     color: white;
-    padding: 15px 25px 15px 25px;
+    padding: 5px 5px 5px 5px;
     font-size: large;
     margin-top: 2%;
     border: 0;
@@ -242,7 +242,7 @@ a:visited {
     margin: 0 auto;
     left: 0;
     right: 0;
-    background-color: rgba(255, 255, 255, 0.90);
+    background-color: rgba(255, 255, 255, 0.99);
     box-shadow: 0 0 3px 1.5px grey;
 }
 

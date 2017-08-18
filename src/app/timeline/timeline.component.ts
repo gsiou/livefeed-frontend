@@ -197,4 +197,18 @@ export class TimelineComponent implements OnInit {
     clearSearch() {
         this.filter = "";
     }
+
+    removeFeed(feed: Feed) {
+        console.log(feed);
+        this.feedService.removeFeed(feed.url).subscribe(
+            (success) => {
+                this.error = "";
+                this.fetchFeeds((articles: Article[]) => {this.nextTimeline = articles});
+            },
+            (error) => {
+                this.error = error;
+                console.log(error); // todo: handle this
+            }
+        )
+    }
 }
