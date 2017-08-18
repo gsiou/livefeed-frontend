@@ -115,8 +115,8 @@ export class TimelineComponent implements OnInit {
 
     addFeed() {
         this.feedService.addFeed(this.url).subscribe(
-            (success) => {
-                if (success === true) {
+            (response) => {
+                if (response === true) {
                     this.error = "";
                     this.message = "Feed added!";
                 }
@@ -136,8 +136,8 @@ export class TimelineComponent implements OnInit {
     addAlert() {
         console.log(this.alert);
         this.alertService.addAlert(this.alert).subscribe(
-            (success) => {
-                if(success === true){
+            (response) => {
+                if(response === true){
                     this.error = "";
                     this.message = "Alert added!";
                 }
@@ -201,9 +201,15 @@ export class TimelineComponent implements OnInit {
     removeFeed(feed: Feed) {
         console.log(feed);
         this.feedService.removeFeed(feed.url).subscribe(
-            (success) => {
-                this.error = "";
-                this.fetchFeeds((articles: Article[]) => {this.nextTimeline = articles});
+            (response) => {
+                if(response === true){
+                    this.error = "";
+                    this.fetchFeeds((articles: Article[]) => {this.nextTimeline = articles});
+                }
+                else {
+                    this.error = "Failed to remove feed"
+                    this.message = "";
+                }
             },
             (error) => {
                 this.error = error;
