@@ -5,8 +5,8 @@
     <header></header>
     <span class="link-like-menu" (click)="showNewFeedForm()">Add Feed</span> /
     <span class="link-like-menu" (click)="toggleManage()">Manage Feeds</span> /
-    <span class="link-like-menu" (click)="toggleSearchForm()">Search</span>
-    <form *ngIf="showSearch" class="search-form" (ngSubmit)="search()">
-        <input [(ngModel)]="searchTerms" name="terms" type="text" placeholder="Search..."/><button class="form-button-small">Search</button>
+    <span class="link-like-menu" (click)="toggleSearchForm(); focusSearch()">Search</span>
+    <form [hidden]="!showSearch" class="search-form" (ngSubmit)="search()">
+        <input #searchbox id="searchbox" autofocus [(ngModel)]="searchTerms" name="terms" type="text" placeholder="Search..."/><button class="form-button-small">Search</button>
     </form>
 </div>
