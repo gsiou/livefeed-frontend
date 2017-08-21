@@ -19,7 +19,6 @@ export class RegisterComponent implements OnInit {
     }
 
     register() {
-        console.log(this.model);
         if(this.model.password !== this.model.password2) {
             this.error = "Passwords do not match";
             this.model.password = "";

@@ -16,18 +16,15 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        console.log(this.model.email);
         this.authenticationService.login(this.model.email, this.model.password)
         .subscribe(
             (success) => {
                 if (success) {
-                    console.log("Logged in");
                     localStorage.removeItem("storedTimeline");
                     this.router.navigate(['/timeline']);
                 }
                 else {
                     this.error = "Invalid email/password";
-                    console.log("Failed to log in");
                 }
             },
             (error) => {

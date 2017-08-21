@@ -48,7 +48,6 @@ export class TimelineComponent implements OnInit {
             });
         }
         setInterval(() => {
-            console.log("Refreshing");
             this.fetchFeeds((articles: Article[]) => { this.nextTimeline = articles });
         }, 5 * 60 * 1000);
 
@@ -68,16 +67,15 @@ export class TimelineComponent implements OnInit {
         this.timeline = this.nextTimeline;
         localStorage.setItem('storedTimeline', JSON.stringify(this.timeline));
         this.nextTimeline = null;
-        console.log("REFRESHING TIMELINE");
     }
 
     fetchAlerts() {
         this.alertService.fetchAlerts().subscribe(
             (alerts) => {
-                console.log(alerts);
+                //
             },
             (error) => {
-                console.log(error);
+                //
             }
         )
     }
@@ -85,7 +83,6 @@ export class TimelineComponent implements OnInit {
     fetchFeeds(callback: any) {
         this.feedService.loadFeeds().subscribe(
             (feeds) => {
-                console.log(feeds);
                 this.feeds = feeds;
                 this.feedService.fetchAll(this.feeds).subscribe(
                     (data) => {
@@ -99,10 +96,8 @@ export class TimelineComponent implements OnInit {
                             else { return 0; }
                         });
                         callback(allArticles);
-                        console.log(this.timeline);
                     },
                     (error) => {
-                        console.log(error);
                     }
                 );
             },
@@ -134,7 +129,6 @@ export class TimelineComponent implements OnInit {
     }
 
     addAlert() {
-        console.log(this.alert);
         this.alertService.addAlert(this.alert).subscribe(
             (response) => {
                 if(response === true){
@@ -199,7 +193,6 @@ export class TimelineComponent implements OnInit {
     }
 
     removeFeed(feed: Feed) {
-        console.log(feed);
         this.feedService.removeFeed(feed.url).subscribe(
             (response) => {
                 if(response === true){
@@ -213,7 +206,7 @@ export class TimelineComponent implements OnInit {
             },
             (error) => {
                 this.error = error;
-                console.log(error); // todo: handle this
+                // TODO: handle this
             }
         )
     }
