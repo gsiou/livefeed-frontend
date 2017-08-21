@@ -12,10 +12,10 @@ export class MenuComponent {
     @Output() onSearch = new EventEmitter<string>();
     @Output() onManage = new EventEmitter();
     @ViewChild('searchbox') searchBox:ElementRef;
-    private newFeedForm: boolean = false;
-    private username: string;
-    private showSearch: boolean = false;
-    private searchTerms: string;
+    newFeedForm: boolean = false;
+    username: string;
+    showSearch: boolean = false;
+    searchTerms: string;
 
     constructor(private authenticationService: AuthenticationService, private router: Router) {
         this.username = authenticationService.getUser();

@@ -16,19 +16,19 @@ import { MenuComponent } from './../menu/menu.component';
 
 export class TimelineComponent implements OnInit {
 
-    private showAddFeedForm: boolean = false;
-    private showAddAlertForm: boolean = false;
-    private showManage: boolean = false;
-    private url: string = "";
-    private alert: string = "";
-    private message: string = "";
-    private error: string = "";
-    private feeds: Feed[] = [];
-    private timeline: Article[] = [];
-    private nextTimeline: Article[] = null;
-    private alerts: Alert[] = [];
-    private loading: boolean = false;
-    private filter: string = "";
+    showAddFeedForm: boolean = false;
+    showAddAlertForm: boolean = false;
+    showManage: boolean = false;
+    url: string = "";
+    alert: string = "";
+    message: string = "";
+    error: string = "";
+    feeds: Feed[] = [];
+    timeline: Article[] = [];
+    nextTimeline: Article[] = null;
+    alerts: Alert[] = [];
+    loading: boolean = false;
+    filter: string = "";
 
     constructor(private feedService: FeedService, private alertService: AlertService) {}
 

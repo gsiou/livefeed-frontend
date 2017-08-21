@@ -1,4 +1,4 @@
-<mainmenu (onShowNewFeedForm)="onShowNewFeedForm($event)" (onSearch)="onSearch($event)" (onManage)="onToggleManage($event)"></mainmenu>
+<mainmenu (onShowNewFeedForm)="onShowNewFeedForm($event)" (onSearch)="onSearch($event)" (onManage)="onToggleManage()"></mainmenu>
 <div [hidden]="!showAddFeedForm" class="modal user-form">
     <form (ngSubmit)="addFeed()">
         <h2>Add new rss source</h2>

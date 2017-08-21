@@ -8,9 +8,9 @@ import { Router }                  from '@angular/router';
 
 export class RegisterComponent implements OnInit {
 
-    private model: any = {};
-    private error: String = "";
-    private success: boolean = false;
+    model: any = {};
+    error: String = "";
+    success: boolean = false;
 
     constructor(private authenticationService: AuthenticationService, private router: Router) {}
 
