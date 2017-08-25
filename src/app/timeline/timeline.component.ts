@@ -178,11 +178,11 @@ export class TimelineComponent implements OnInit {
     }
 
     applyFilter(article: Article): boolean {
-        // TODO: Should be replaced by serious search
-        if(article.title.indexOf(this.filter) !== -1) {
+        let searchFilter = this.filter.toLowerCase();
+        if(article.title.toLowerCase().indexOf(searchFilter) !== -1) {
             return true;
         }
-        if(article.summary.indexOf(this.filter) !== -1) {
+        if(article.summary.toLowerCase().indexOf(searchFilter) !== -1) {
             return true;
         }
         return false;
