@@ -14,7 +14,6 @@ export class AuthenticationService {
     }
 
     login(email: string, password: string): Observable<boolean> {
-      console.log("Hello World");
       return this.http.post(this.config.apiEndpoint + '/authenticate',
         { email: email, password: password })
         .map((response: Response) => {
@@ -22,8 +21,6 @@ export class AuthenticationService {
             if (res.success === true) {
                 localStorage.setItem('authUser', JSON.stringify( { email: email, token: res.token } ));
                 localStorage.setItem('authDate', Date.now().toString());
-                console.log(localStorage.getItem('authUser'));
-                console.log(localStorage.getItem('authDate'));
                 return true;
             }
             else {
@@ -39,11 +36,9 @@ export class AuthenticationService {
     }
 
     register(email: string, password: string): Observable<boolean> {
-        console.log("Trying to register...");
         return this.http.post(this.config.apiEndpoint + '/register',
         { email: email, password: password })
         .map((response: Response) => {
-            console.log(response);
             return true;
         });
     }

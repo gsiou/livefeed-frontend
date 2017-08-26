@@ -25,7 +25,6 @@ export class FeedService {
                 let currArticle = new Article(res.articles[i]);
                 articles.push(currArticle);
             }
-            //return res.articles;
             return articles;
         });
     }
