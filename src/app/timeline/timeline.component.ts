@@ -173,8 +173,12 @@ export class TimelineComponent implements OnInit {
         this.filter = terms;
     }
 
-    onToggleManage() {
-        this.showManage = !this.showManage;
+    onShowManage() {
+        this.showManage = true;
+    }
+
+    onHideManage() {
+        this.showManage = false;
     }
 
     applyFilter(article: Article): boolean {

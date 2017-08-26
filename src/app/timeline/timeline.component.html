@@ -1,4 +1,4 @@
-<mainmenu (onShowNewFeedForm)="onShowNewFeedForm($event)" (onSearch)="onSearch($event)" (onManage)="onToggleManage()"></mainmenu>
+<mainmenu (onShowNewFeedForm)="onShowNewFeedForm($event)" (onSearch)="onSearch($event)" (onManage)="onShowManage()"></mainmenu>
 <div [hidden]="!showAddFeedForm" class="modal user-form">
     <form (ngSubmit)="addFeed()">
         <h2>Add new rss source</h2>
@@ -11,7 +11,8 @@
         </div>
     </form>
 </div>
-<div [hidden]="!showManage" class="modal user-form align-center">
+<div [hidden]="!showManage" class="timeline">
+    <span class="link-like" (click)="onHideManage()">Back to timeline</span>
     <h2>Your feeds</h2>
     <div *ngFor="let feed of feeds; let i = index">
         <strong>{{ feed.name }}</strong> ({{ feed.url }})<br>
@@ -20,11 +21,13 @@
         <hr>
     </div>
 </div>
-<p [hidden]="!loading">Loading...</p>
-<div class="timeline">
-    <p class="result-message" *ngIf="filter!==''">Results for <strong>"{{ filter }}"</strong> <i (click)="clearSearch()" class="fa fa-times-circle close-btn" aria-hidden="true"></i></p>
-    <p class="important-message" *ngIf="nextTimeline && differentTimelines()">You have <span class="link-like" (click)="refreshTimeline()">new articles!</span></p>
-    <div *ngFor="let article of timeline; let j = index">
-        <articleview *ngIf="filter === '' || applyFilter(article)" [article]="article"></articleview>
+<div *ngIf="!showManage">
+    <p [hidden]="!loading">Loading...</p>
+    <div class="timeline">
+        <p class="result-message" *ngIf="filter!==''">Results for <strong>"{{ filter }}"</strong> <i (click)="clearSearch()" class="fa fa-times-circle close-btn" aria-hidden="true"></i></p>
+        <p class="important-message" *ngIf="nextTimeline && differentTimelines()">You have <span class="link-like" (click)="refreshTimeline()">new articles!</span></p>
+        <div *ngFor="let article of timeline; let j = index">
+            <articleview *ngIf="filter === '' || applyFilter(article)" [article]="article"></articleview>
+        </div>
     </div>
 </div>

@@ -36,7 +36,7 @@ export class MenuComponent {
         }
     }
 
-    toggleManage() {
+    showManage() {
         this.onManage.emit();
     }
 
