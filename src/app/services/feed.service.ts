@@ -42,7 +42,7 @@ export class FeedService {
                 let articles: Article[] = new Array();
                 for(var i = 0; i < res.articles.length; i++) {
                     let currArticle = new Article(res.articles[i]);
-                    currArticle.setFeedName(feeds[feedIndex].url);
+                    currArticle.setFeedName(feeds[feedIndex].name);
                     articles.push(currArticle);
                 }
                 return articles;
