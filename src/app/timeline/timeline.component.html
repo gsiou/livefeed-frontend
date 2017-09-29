@@ -1,33 +1,37 @@
 <mainmenu (onShowNewFeedForm)="onShowNewFeedForm($event)" (onSearch)="onSearch($event)" (onManage)="onShowManage()"></mainmenu>
 <div [hidden]="!showAddFeedForm" class="modal user-form">
-    <form (ngSubmit)="addFeed()">
-        <h2>Add new rss source</h2>
-        <label for="url">URL:</label><input [(ngModel)]="url" type="text" id="url" name="url" required>
-        <input class="form-button" type="submit" value="Save">
-        <div class="align-center"><span (click)="hideNewFeedForm()" class="link-like">Close</span>
-            <br>
-            <span style="color: red"> {{ error }}</span>
-            <span style="color: green"> {{ message }}</span>
-        </div>
-    </form>
+  <form (ngSubmit)="addFeed()">
+    <h2>Add new rss source</h2>
+    <label for="url">URL:</label><input [(ngModel)]="url" type="text" id="url" name="url" required>
+    <input class="form-button" type="submit" value="Save">
+    <div class="align-center"><span (click)="hideNewFeedForm()" class="link-like">Close</span>
+      <br>
+      <span style="color: red"> {{ error }}</span>
+      <span style="color: green"> {{ message }}</span>
+    </div>
+  </form>
 </div>
 <div [hidden]="!showManage" class="timeline">
-    <span class="link-like" (click)="onHideManage()">Back to timeline</span>
-    <h2>Your feeds</h2>
-    <div *ngFor="let feed of feeds; let i = index">
-        <strong>{{ feed.name }}</strong> ({{ feed.url }})<br>
-        {{ feed.description }}<br>
-        <button class="form-button-small" (click)="removeFeed(feed)">Remove Feed</button>
-        <hr>
-    </div>
+  <span class="link-like" (click)="onHideManage()">Back to timeline</span>
+  <h2>Your feeds</h2>
+  <div *ngFor="let feed of feeds; let i = index">
+    <strong>{{ feed.name }}</strong> ({{ feed.url }})<br>
+    {{ feed.description }}<br>
+    <button class="form-button-small" (click)="removeFeed(feed)">Remove Feed</button>
+    <hr>
+  </div>
 </div>
 <div *ngIf="!showManage">
-    <p [hidden]="!loading">Loading...</p>
-    <div class="timeline">
-        <p class="result-message" *ngIf="filter!==''">Results for <strong>"{{ filter }}"</strong> <i (click)="clearSearch()" class="fa fa-times-circle close-btn" aria-hidden="true"></i></p>
-        <p class="important-message" *ngIf="nextTimeline && differentTimelines()">You have <span class="link-like" (click)="refreshTimeline()">new articles!</span></p>
-        <div *ngFor="let article of timeline; let j = index">
-            <articleview *ngIf="filter === '' || applyFilter(article)" [article]="article"></articleview>
-        </div>
+  <p [hidden]="!loading" class="loading">
+    <span class="loading-icon">
+      <i class="fa fa-rss" aria-hidden="true"></i>
+    </span>
+  </p>
+  <div class="timeline">
+    <p class="result-message" *ngIf="filter!==''">Results for <strong>"{{ filter }}"</strong> <i (click)="clearSearch()" class="fa fa-times-circle close-btn" aria-hidden="true"></i></p>
+    <p class="important-message" *ngIf="nextTimeline && differentTimelines()">You have <span class="link-like" (click)="refreshTimeline()">new articles!</span></p>
+    <div *ngFor="let article of timeline; let j = index">
+      <articleview *ngIf="filter === '' || applyFilter(article)" [article]="article"></articleview>
     </div>
+  </div>
 </div>
