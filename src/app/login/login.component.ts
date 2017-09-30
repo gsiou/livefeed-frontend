@@ -1,5 +1,5 @@
 import { Component, OnInit }       from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService }   from '../services/authentication.service';
 @Component({
   templateUrl: './login.component.html',
@@ -9,10 +9,15 @@ export class LoginComponent implements OnInit {
 
     model: any = {};
     error: string = "";
-    constructor(private authenticationService: AuthenticationService, private router: Router) {}
+    constructor(private authenticationService: AuthenticationService, private router: Router, private route: ActivatedRoute) {}
 
     ngOnInit() {
-        this.authenticationService.logout();
+      this.authenticationService.logout();
+      console.log(this.route.paramMap);
+      this.route.params.subscribe(params => {
+        if (params.expired) {
+          this.error = "Your session has expired. Please login again.";
+      });
     }
 
     login() {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { FeedService } from '../services/feed.service';
 import { AlertService } from '../services/alert.service';
@@ -30,7 +31,9 @@ export class TimelineComponent implements OnInit {
   loading: boolean = false;
   filter: string = "";
 
-  constructor(private feedService: FeedService, private alertService: AlertService) {}
+  constructor(private feedService: FeedService,
+              private alertService: AlertService,
+              private router: Router) {}
 
   ngOnInit() {
     if(localStorage.getItem('storedTimeline')) {
@@ -103,7 +106,10 @@ export class TimelineComponent implements OnInit {
       },
       (error) => {
         this.error = error;
-        this.message = "";
+        if (error.status === 403) {
+          // Session expired
+          // Redirect user to login
+          this.router.navigate(['/login/expired']);
       }
     );
   }
