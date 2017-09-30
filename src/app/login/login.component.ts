@@ -15,8 +15,9 @@ export class LoginComponent implements OnInit {
       this.authenticationService.logout();
       console.log(this.route.paramMap);
       this.route.params.subscribe(params => {
-        if (params.expired) {
+        if (params["expired"]) {
           this.error = "Your session has expired. Please login again.";
+        }
       });
     }
 
