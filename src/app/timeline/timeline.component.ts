@@ -38,16 +38,18 @@ export class TimelineComponent implements OnInit {
   ngOnInit() {
     if(localStorage.getItem('storedTimeline')) {
       this.timeline = this.parseTimeline(localStorage.getItem('storedTimeline'));
-      this.loading = true;
+      //this.loading = true;
       this.fetchFeeds((articles: Article[]) => {
         this.nextTimeline = articles;
-        this.loading = false;
+        //this.loading = false;
       });
     }
     else {
+      //this.loading = true;
       this.fetchFeeds((articles: Article[]) => {
         this.timeline = articles;
         localStorage.setItem('storedTimeline', JSON.stringify(articles));
+        //this.loading = false;
       });
     }
     setInterval(() => {
@@ -84,6 +86,7 @@ export class TimelineComponent implements OnInit {
   }
 
   fetchFeeds(callback: any) {
+    this.loading = true;
     this.feedService.loadFeeds().subscribe(
       (feeds) => {
         this.feeds = feeds;
@@ -98,6 +101,7 @@ export class TimelineComponent implements OnInit {
               else if(a.pubdate > b.pubdate) { return -1; }
               else { return 0; }
             });
+            this.loading = false;
             callback(allArticles);
           },
           (error) => {
@@ -110,6 +114,7 @@ export class TimelineComponent implements OnInit {
           // Session expired
           // Redirect user to login
           this.router.navigate(['/login/expired']);
+        }
       }
     );
   }
