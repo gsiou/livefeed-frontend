@@ -8,7 +8,7 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 
 export class MenuComponent {
-    @Output() onShowNewFeedForm = new EventEmitter<boolean>();
+    @Output() onShowNewFeedForm = new EventEmitter();
     @Output() onSearch = new EventEmitter<string>();
     @Output() onManage = new EventEmitter();
     @ViewChild('searchbox') searchBox:ElementRef;
@@ -23,7 +23,7 @@ export class MenuComponent {
 
     showNewFeedForm() {
         this.newFeedForm = !this.newFeedForm;
-        this.onShowNewFeedForm.emit(this.newFeedForm);
+        this.onShowNewFeedForm.emit();
     }
 
     toggleSearchForm() {

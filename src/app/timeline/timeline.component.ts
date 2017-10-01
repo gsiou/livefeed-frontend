@@ -172,8 +172,8 @@ export class TimelineComponent implements OnInit {
     return false;
   }
 
-  onShowNewFeedForm(show: boolean) {
-    this.showAddFeedForm = show;
+  onShowNewFeedForm() {
+    this.showAddFeedForm = !this.showAddFeedForm;
   }
 
   hideNewFeedForm() {
