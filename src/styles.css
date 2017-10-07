@@ -289,3 +289,11 @@ a:visited {
     max-width: 90%;
   }
 }
+
+.back-to-top {
+  position: fixed;
+  bottom: 1%;
+  right: 1%;
+  font-size: xx-large;
+  cursor: pointer;
+}

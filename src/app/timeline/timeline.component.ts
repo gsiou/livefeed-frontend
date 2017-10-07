@@ -30,12 +30,17 @@ export class TimelineComponent implements OnInit {
   alerts: Alert[] = [];
   loading: boolean = false;
   filter: string = "";
+  scrollY: number = 0
 
   constructor(private feedService: FeedService,
               private alertService: AlertService,
               private router: Router) {}
 
   ngOnInit() {
+    window.addEventListener('scroll', (e) => {
+      this.handleScroll();
+    })
+
     if(localStorage.getItem('storedTimeline')) {
       this.timeline = this.parseTimeline(localStorage.getItem('storedTimeline'));
       //this.loading = true;
@@ -224,5 +229,13 @@ export class TimelineComponent implements OnInit {
         // TODO: handle this
       }
     )
+  }
+
+  scrollTop() {
+    window.scrollTo(0, 0);
+  }
+
+  handleScroll() {
+    this.scrollY = window.pageYOffset;
   }
 }
