@@ -1,8 +1,8 @@
 <strong>
-    <a target="_blank" class="article-title" href="{{ article.url }}">{{ article.title }}</a>
-    <br>
-    ({{ article.feedName }})
+  <a target="_blank" class="article-title" href="{{ article.url }}">{{ article.title }}</a>
 </strong>
+<br>
+<strong>{{ article.feedName || article.feedUrl }}</strong> {{ article.author || '' }}
 <br>
 <i class="fa fa-clock-o" aria-hidden="true"></i> {{ article.pubdate }}
 <br>
