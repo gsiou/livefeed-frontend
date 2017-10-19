@@ -1,12 +1,17 @@
 <div class="menu-bar">
-    <div class="user-info">
-        <span>Logged in as: {{ username }} | <a href="#" (click)="logout()">Logout</a></span>
-    </div>
-    <header></header>
-    <span class="link-like-menu" (click)="showNewFeedForm()">Add Feed</span> /
-    <span class="link-like-menu" (click)="showManage()">Manage Feeds</span> /
-    <span class="link-like-menu" (click)="toggleSearchForm(); focusSearch()">Search</span>
-    <form [hidden]="!showSearch" class="search-form" (ngSubmit)="search()">
-        <input #searchbox id="searchbox" autofocus [(ngModel)]="searchTerms" name="terms" type="text" placeholder="Search..."/><button class="form-button-small">Search</button>
-    </form>
+  <div class="user-info">
+    <span>Logged in as: {{ username }} | <a href="#" (click)="logout()">Logout</a></span>
+  </div>
+  <header></header>
+  <span class="link-like-menu" (click)="showNewFeedForm()">Add Feed</span> /
+  <span class="link-like-menu" (click)="showManage()">Manage Feeds</span> /
+  <span class="link-like-menu" (click)="toggleSearchForm(); focusSearch()">Search</span>
+  <form [hidden]="!showSearch" class="search-form" (ngSubmit)="search()">
+    <select [(ngModel)]="activeFeed" name="activeFeed" (change)="feedSelect()">
+      <option [ngValue]="null">All feeds</option>
+      <option *ngFor="let feed of feeds" [ngValue]="feed">{{ feed.name || "All feeds" }}</option>
+    </select>
+    <br>
+    <input #searchbox id="searchbox" autofocus [(ngModel)]="searchTerms" name="terms" type="text" placeholder="Search..."/><button class="form-button-small">Search</button>
+  </form>
 </div>

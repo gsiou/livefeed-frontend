@@ -1,4 +1,4 @@
-<mainmenu (onShowNewFeedForm)="onShowNewFeedForm()" (onSearch)="onSearch($event)" (onManage)="onShowManage()"></mainmenu>
+<mainmenu [feeds]="feeds" (onShowNewFeedForm)="onShowNewFeedForm()" (onSearch)="onSearch($event)" (onManage)="onShowManage()" (onSelectFeed)="onSelectFeed($event)"></mainmenu>
 <div [hidden]="!showAddFeedForm" class="modal user-form">
   <form (ngSubmit)="addFeed()">
     <h2>Add new rss source</h2>
@@ -31,7 +31,7 @@
     <p class="result-message" *ngIf="filter!==''">Results for <strong>"{{ filter }}"</strong> <i (click)="clearSearch()" class="fa fa-times-circle close-btn" aria-hidden="true"></i></p>
     <p class="important-message" *ngIf="nextTimeline && differentTimelines()">You have <span class="link-like" (click)="refreshTimeline()">new articles!</span></p>
     <div *ngFor="let article of timeline; let j = index">
-      <articleview *ngIf="filter === '' || applyFilter(article)" [article]="article"></articleview>
+      <articleview *ngIf="(filter === '' || applyFilter(article)) &&  activeFeed === null || article.feedUrl === activeFeed.url" [article]="article"></articleview>
     </div>
   </div>
 </div>

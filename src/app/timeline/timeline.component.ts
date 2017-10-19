@@ -30,7 +30,8 @@ export class TimelineComponent implements OnInit {
   alerts: Alert[] = [];
   loading: boolean = false;
   filter: string = "";
-  scrollY: number = 0
+  scrollY: number = 0;
+  activeFeed: Feed = null;
 
   constructor(private feedService: FeedService,
               private alertService: AlertService,
@@ -195,6 +196,10 @@ export class TimelineComponent implements OnInit {
 
   onHideManage() {
     this.showManage = false;
+  }
+
+  onSelectFeed(feed: Feed) {
+    this.activeFeed = feed;
   }
 
   applyFilter(article: Article): boolean {
