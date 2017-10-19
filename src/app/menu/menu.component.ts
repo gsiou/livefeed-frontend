@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
+import { Feed } from '../models/feed';
 
 @Component({
   templateUrl: './menu.component.html',
