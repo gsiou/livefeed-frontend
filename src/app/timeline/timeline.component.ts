@@ -203,12 +203,23 @@ export class TimelineComponent implements OnInit {
   }
 
   applyFilter(article: Article): boolean {
-    let searchFilter = this.filter.toLowerCase();
-    if(article.title.toLowerCase().indexOf(searchFilter) !== -1) {
-      return true;
-    }
-    if(article.summary.toLowerCase().indexOf(searchFilter) !== -1) {
-      return true;
+    const searchFilter = this.filter.toLowerCase();
+    const articleTitle = article.title.toLowerCase();
+    const articleSummary = article.summary.toLowerCase();
+    const articleFeed = article.feedName.toLowerCase();
+    if(!this.activeFeed || article.feedUrl === this.activeFeed.url) {
+      if(searchFilter === '') {
+        return true;
+      }
+      if(articleTitle.indexOf(searchFilter) !== -1) {
+        return true;
+      }
+      if(articleSummary.indexOf(searchFilter) !== -1) {
+        return true;
+      }
+      if(articleFeed.indexOf(searchFilter) !== -1) {
+        return true;
+      }
     }
     return false;
   }
