@@ -240,7 +240,7 @@ a:visited {
 
 .modal {
   transition: opacity 0.3s;
-  position: absolute;
+  position: fixed;
   top: 15%;
   z-index: 1000;
   color: black;
